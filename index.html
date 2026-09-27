@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Texxer — Gaming Communities</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap');
+:root{--bg:#050510;--panel:#0b0b1c;--panel2:#111127;--cyan:#00f5ff;--pink:#ff00e5;--muted:#9696b2;--line:#26264b;--danger:#ff477e;--good:#64ff9b}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 20% 0%,#101040 0,#050510 38%,#030307 100%);color:#fff;font-family:Inter,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+header{height:72px;position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:18px;padding:0 24px;background:rgba(5,5,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--cyan);box-shadow:0 0 24px #00f5ff25}
+.logo{font:800 23px Orbitron;color:var(--cyan);text-shadow:0 0 14px #00f5ff;white-space:nowrap}.logo span{color:var(--pink)}
+.search{flex:1;max-width:720px;margin:auto;position:relative}.search input{width:100%;padding:12px 16px;border:1px solid var(--pink);border-radius:12px;background:#0c0c19;color:white;outline:none;box-shadow:0 0 12px #ff00e51a}.search input:focus{box-shadow:0 0 18px #ff00e555}
+.btn{border:1px solid var(--cyan);background:#0d0d20;color:white;border-radius:10px;padding:10px 15px;transition:.18s}.btn:hover{background:var(--cyan);color:#030307;box-shadow:0 0 18px #00f5ff66}.btn.pink{border-color:var(--pink)}.btn.pink:hover{background:var(--pink)}.btn.primary{background:linear-gradient(90deg,#00d9e6,#7a4dff);border:0}.btn.danger{border-color:var(--danger)}
+.shell{max-width:1400px;margin:auto;padding:24px;display:grid;grid-template-columns:230px minmax(0,1fr) 280px;gap:22px}.side,.right{position:sticky;top:96px;height:max-content}.navbox,.card{background:linear-gradient(145deg,#0b0b1c,#080814);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 0 22px #0008}.navbox{margin-bottom:14px}.navitem{width:100%;display:block;text-align:left;background:transparent;border:0;color:#ddd;padding:11px;border-radius:9px}.navitem:hover,.navitem.active{background:#00f5ff12;color:var(--cyan)}.section-title{font:700 12px Orbitron;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:4px 0 12px}.feedhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.feedhead h1{font:800 22px Orbitron;margin:0}.filters{display:flex;gap:8px}.filters button{padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:#0c0c19;color:#bbb}.filters button.active{border-color:var(--cyan);color:var(--cyan)}
+.post{background:#0b0b1c;border:1px solid var(--line);border-radius:16px;margin-bottom:15px;display:grid;grid-template-columns:58px 1fr;overflow:hidden}.post:hover{border-color:#00f5ff66}.votes{padding:15px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;background:#080814}.vote{border:0;background:transparent;color:#777;font-size:20px}.vote:hover,.vote.on{color:var(--cyan)}.vote.down:hover,.vote.down.on{color:var(--pink)}.score{font-weight:700}.postbody{padding:17px 18px}.meta{color:var(--muted);font-size:12px}.meta b{color:#ff63ed}.post h2{margin:8px 0;font-size:19px}.post p{color:#d6d6e7;line-height:1.6;white-space:pre-wrap}.actions{display:flex;gap:10px;margin-top:14px}.action{background:none;border:0;color:#9d9db8;padding:5px 0}.action:hover{color:var(--cyan)}.tag{display:inline-block;color:#ff63ed}.trend{padding:11px 0;border-bottom:1px solid var(--line)}.trend:last-child{border:0}.trend small{display:block;color:var(--muted);margin-top:4px}.hero{padding:30px;border:1px solid #00f5ff55;border-radius:18px;background:radial-gradient(circle at 90% 10%,#ff00e522,transparent 40%),#0a0a1c;margin-bottom:18px}.hero h1{font:800 clamp(28px,5vw,48px) Orbitron;margin:0 0 10px;color:var(--cyan);text-shadow:0 0 18px #00f5ff55}.hero p{color:#bbb;max-width:720px;line-height:1.6}.modal{position:fixed;inset:0;z-index:50;background:#000b;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:18px}.modalbox{width:min(560px,100%);background:#09091a;border:1px solid var(--cyan);border-radius:18px;padding:22px;box-shadow:0 0 40px #00f5ff33}.modalbox h2{font-family:Orbitron}.field{margin:12px 0}.field label{display:block;color:#aaa;font-size:12px;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;padding:12px;border-radius:10px;border:1px solid #303054;background:#111125;color:white;outline:none}.field textarea{min-height:150px;resize:vertical}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.toast{position:fixed;right:20px;bottom:20px;z-index:100;background:#11112a;border:1px solid var(--cyan);padding:13px 16px;border-radius:10px;box-shadow:0 0 20px #00f5ff33}.empty{text-align:center;padding:50px 15px;color:var(--muted)}.profile{display:flex;gap:14px;align-items:center}.avatar{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#00f5ff,#ff00e5);color:#050510;font:800 20px Orbitron}.auth{max-width:440px;margin:60px auto}.auth h1{text-align:center;font:800 30px Orbitron;color:var(--cyan)}.mobilebar{display:none}
+@media(max-width:1050px){.shell{grid-template-columns:190px minmax(0,1fr)}.right{display:none}}
+@media(max-width:720px){header{padding:0 12px;gap:8px}.logo{font-size:18px}.shell{display:block;padding:12px}.side{display:none}.mobilebar{display:flex;gap:7px;overflow:auto;margin-bottom:12px}.mobilebar .navitem{white-space:nowrap;width:auto}.post{grid-template-columns:45px 1fr}.postbody{padding:13px}.filters{overflow:auto}.filters button{white-space:nowrap}.hero{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">⚡ TEX<span>XER</span></div>
+  <div class="search"><input id="search" placeholder="Search Texxer..." autocomplete="off"></div>
+  <button class="btn" id="authBtn">Sign in</button>
+  <button class="btn primary" id="createBtn">+ Create</button>
+</header>
+
+<div class="shell">
+  <aside class="side">
+    <div class="navbox">
+      <div class="section-title">Navigation</div>
+      <button class="navitem active" data-view="home">⌂ Home</button>
+      <button class="navitem" data-view="popular">🔥 Popular</button>
+      <button class="navitem" data-view="following">★ Following</button>
+      <button class="navitem" data-view="leaderboard">🏆 Leaderboard</button>
+    </div>
+    <div class="navbox">
+      <div class="section-title">Texes</div>
+      <div id="texNav"></div>
+      <button class="navitem" id="newTexBtn">＋ Create a Tex</button>
+    </div>
+  </aside>
+
+  <main>
+    <div class="mobilebar">
+      <button class="navitem active" data-view="home">Home</button>
+      <button class="navitem" data-view="popular">Popular</button>
+      <button class="navitem" data-view="following">Following</button>
+      <button class="navitem" data-view="leaderboard">Leaderboard</button>
+    </div>
+    <section id="app"></section>
+  </main>
+
+  <aside class="right">
+    <div class="card">
+      <div class="section-title">Trending Texes</div>
+      <div id="trending"></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="section-title">About Texxer</div>
+      <p style="color:#aaa;font-size:13px;line-height:1.6">A gaming-focused community platform. Browse as a guest, or sign in to post, vote, reply and follow creators.</p>
+    </div>
+  </aside>
+</div>
+
+<div id="modal" class="modal hidden"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const API = "https://texxer-api.texxer.workers.dev";
+const state = { user:null, posts:[], texes:[], filter:"latest", view:"home", query:"", token:localStorage.getItem("texxer_token") };
+const allowed = /^[a-z0-9_\\-/]+$/;
+
+async function api(path, options={}) {
+  const headers = {"Content-Type":"application/json", ...(options.headers||{})};
+  if(state.token) headers.Authorization = "Bearer "+state.token;
+  const res = await fetch(API+path,{...options,headers});
+  let data={}; try{data=await res.json()}catch{}
+  if(!res.ok) throw new Error(data.error||"Request failed");
+  return data;
+}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.remove("hidden");setTimeout(()=>t.classList.add("hidden"),2800)}
+function requireAuth(action){if(!state.user){openAuth();toast("Sign in required to "+action);return false}return true}
+function openModal(html){document.getElementById("modal").innerHTML=html;document.getElementById("modal").classList.remove("hidden")}
+function closeModal(){document.getElementById("modal").classList.add("hidden");document.getElementById("modal").innerHTML=""}
+
+function openAuth(){
+openModal(`<div class="modalbox auth"><h1>⚡ TEXXER</h1><div class="field"><label>Email</label><input id="email" type="email"></div><div class="field"><label>Password</label><input id="password" type="password"></div><div class="field" id="usernameField"><label>Username (sign up)</label><input id="username" placeholder="gaming_user"></div><div class="field"><label>Date of birth</label><input id="dob" type="date"></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" id="loginAction">Sign in</button><button class="btn pink" id="signupAction">Create account</button></div></div>`);
+document.getElementById("loginAction").onclick=login;
+document.getElementById("signupAction").onclick=signup;
+}
+async function login(){try{const d=await api("/auth/login",{method:"POST",body:JSON.stringify({email:email.value,password:password.value})});state.token=d.access_token;localStorage.setItem("texxer_token",state.token);await boot();closeModal();toast("Welcome back!")}catch(e){toast(e.message)}}
+async function signup(){try{const u=username.value.trim().toLowerCase();if(!allowed.test(u))throw Error("Username contains an invalid character");const d=await api("/auth/signup",{method:"POST",body:JSON.stringify({email:email.value,password:password.value,username:u,dob:dob.value})});if(d.access_token){state.token=d.access_token;localStorage.setItem("texxer_token",state.token)}closeModal();toast(d.message||"Check your email to verify your account");await boot()}catch(e){toast(e.message)}}
+async function logout(){localStorage.removeItem("texxer_token");state.token=null;state.user=null;await boot();toast("Signed out")}
+
+function openPost(){
+if(!requireAuth("create a post"))return;
+openModal(`<div class="modalbox"><h2>⚡ Create Post</h2><div class="field"><label>Tex</label><select id="postTex">${state.texes.map(t=>`<option value="${esc(t.slug)}">${esc(t.name)}</option>`).join("")}</select></div><div class="field"><label>Title</label><input id="postTitle" maxlength="200"></div><div class="field"><label>Content</label><textarea id="postContent" maxlength="20000"></textarea></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="submitPost()">Post ⚡</button></div></div>`)
+}
+async function submitPost(){try{const title=postTitle.value.trim(),content=postContent.value.trim(),tex=postTex.value;if(!title||!content)throw Error("Title and content are required");await api("/posts",{method:"POST",body:JSON.stringify({title,content,tex_slug:tex})});closeModal();await loadFeed();toast("Post published!")}catch(e){toast(e.message)}}
+
+function openTex(){
+if(!requireAuth("create a Tex"))return;
+openModal(`<div class="modalbox"><h2>⚡ Create a Tex</h2><div class="field"><label>Name / slug</label><input id="texName" placeholder="retro_gaming"></div><div class="field"><label>Description</label><textarea id="texDesc"></textarea></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="submitTex()">Create Tex</button></div></div>`)
+}
+async function submitTex(){try{const slug=texName.value.trim().toLowerCase();if(!allowed.test(slug))throw Error("Tex name contains an invalid character");await api("/texes",{method:"POST",body:JSON.stringify({slug,name:slug,description:texDesc.value.trim()})});closeModal();await boot();toast("Tex created")}catch(e){toast(e.message)}}
+
+async function vote(id,value){if(!requireAuth("vote"))return;try{await api(`/posts/${id}/vote`,{method:"POST",body:JSON.stringify({value})});await loadFeed()}catch(e){toast(e.message)}}
+async function reply(id){if(!requireAuth("reply"))return;const input=document.getElementById("reply-"+id);if(!input.value.trim())return;try{await api(`/posts/${id}/replies`,{method:"POST",body:JSON.stringify({content:input.value.trim()})});input.value="";await loadFeed()}catch(e){toast(e.message)}}
+async function follow(username){if(!requireAuth("follow creators"))return;try{await api(`/users/${encodeURIComponent(username)}/follow`,{method:"POST"});toast("Follow updated");await loadFeed()}catch(e){toast(e.message)}}
+
+function postHTML(p){
+return `<article class="post"><div class="votes"><button class="vote ${p.my_vote===1?"on":""}" onclick="vote('${esc(p.id)}',1)">▲</button><span class="score">${p.score??0}</span><button class="vote down ${p.my_vote===-1?"on":""}" onclick="vote('${esc(p.id)}',-1)">▼</button></div><div class="postbody"><div class="meta">⚡ <b>t/${esc(p.tex_slug||"general")}</b> · by <b>@${esc(p.username||"user")}</b> · ${esc(p.created_label||"recent")} · ${p.views||0} views</div><h2>${esc(p.title)}</h2><p>${esc(p.content)}</p><div class="actions"><button class="action" onclick="document.getElementById('replybox-${esc(p.id)}').classList.toggle('hidden')">💬 ${p.reply_count||0} replies</button><button class="action" onclick="follow('${esc(p.username||"")}')">＋ Follow</button></div><div id="replybox-${esc(p.id)}" class="hidden" style="margin-top:12px"><input id="reply-${esc(p.id)}" style="width:100%;padding:10px;background:#111125;color:#fff;border:1px solid #303054;border-radius:9px" placeholder="Write a reply..."><button class="btn" style="margin-top:8px" onclick="reply('${esc(p.id)}')">Reply</button></div></div></article>`
+}
+
+async function loadFeed(){
+try{
+let q=state.query?`&q=${encodeURIComponent(state.query)}`:"";
+let sort=state.filter==="popular"?"score":state.filter==="views"?"views":"latest";
+const d=await api(`/feed?sort=${sort}${q}`);
+state.posts=d.posts||[];
+render();
+}catch(e){document.getElementById("app").innerHTML=`<div class="card empty">Could not load the feed.<br><small>${esc(e.message)}</small></div>`}
+}
+function render(){
+const app=document.getElementById("app");
+if(state.view==="leaderboard"){renderLeaderboard();return}
+const title=state.view==="following"?"Following":state.view==="popular"?"Popular":"Latest";
+app.innerHTML=`<section class="hero"><h1>Welcome to Texxer</h1><p>The gaming community platform built around <b>Texes</b>. Discover games, share knowledge, discuss retro classics and find your people.</p><button class="btn primary" onclick="openPost()">Create a post ⚡</button></section><div class="feedhead"><h1>${title}</h1><div class="filters"><button class="${state.filter==="latest"?"active":""}" onclick="setFilter('latest')">Latest</button><button class="${state.filter==="popular"?"active":""}" onclick="setFilter('popular')">Liked</button><button class="${state.filter==="views"?"active":""}" onclick="setFilter('views')">Viewed</button></div></div>${state.posts.length?state.posts.map(postHTML).join(""):`<div class="card empty">No posts found.</div>`}`
+}
+function setFilter(f){state.filter=f;loadFeed()}
+async function renderLeaderboard(){try{const d=await api("/leaderboard");document.getElementById("app").innerHTML=`<div class="card"><h1 style="font-family:Orbitron;color:var(--cyan)">🏆 Creator Leaderboard</h1>${(d.users||[]).map((u,i)=>`<div class="trend"><b>#${i+1} @${esc(u.username)}</b><small>${u.followers||0} followers</small></div>`).join("")||'<div class="empty">No creators yet.</div>'}</div>`}catch(e){toast(e.message)}}
+async function boot(){
+try{const d=state.token?await api("/auth/me"):{};state.user=d.user||null}catch{state.user=null}
+document.getElementById("authBtn").textContent=state.user?`@${state.user.username}`:"Sign in";
+document.getElementById("authBtn").onclick=state.user?logout:openAuth;
+try{const t=await api("/texes");state.texes=t.texes||[]}catch{state.texes=[]}
+document.getElementById("texNav").innerHTML=state.texes.slice(0,8).map(t=>`<button class="navitem" onclick="searchTex('${esc(t.slug)}')">⚡ ${esc(t.name)}</button>`).join("");
+document.getElementById("trending").innerHTML=state.texes.slice(0,5).map(t=>`<div class="trend"><b>⚡ ${esc(t.name)}</b><small>${t.members||0} members</small></div>`).join("")||'<div style="color:#777">No Texes yet.</div>';
+await loadFeed();
+}
+function searchTex(s){document.getElementById("search").value=s;state.query=s;loadFeed()}
+document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{state.view=b.dataset.view;document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x===b));if(state.view==="leaderboard")renderLeaderboard();else loadFeed()});
+document.getElementById("createBtn").onclick=openPost;
+document.getElementById("newTexBtn").onclick=openTex;
+document.getElementById("search").addEventListener("input",e=>{state.query=e.target.value.trim();clearTimeout(window.searchTimer);window.searchTimer=setTimeout(loadFeed,300)});
+boot();
+</script>
+</body>
+</html>
