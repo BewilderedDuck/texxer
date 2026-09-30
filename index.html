@@ -10,7 +10,7 @@
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 20% 0%,#101040 0,#050510 38%,#030307 100%);color:#fff;font-family:Inter,Arial,sans-serif}
 button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
 header{height:72px;position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:18px;padding:0 24px;background:rgba(5,5,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--cyan);box-shadow:0 0 24px #00f5ff25}
-.logo{font:800 23px Orbitron;color:var(--cyan);text-shadow:0 0 14px #00f5ff;white-space:nowrap}.logo span{color:var(--pink)}
+.logo{font:800 23px Orbitron;color:var(--cyan);text-shadow:0 0 14px #00f5ff;white-space:nowrap;background:linear-gradient(90deg,#00f5ff 0%,#6f5cff 52%,#b14cff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.logo span{color:var(--pink)}
 .search{flex:1;max-width:720px;margin:auto;position:relative}.search input{width:100%;padding:12px 16px;border:1px solid var(--pink);border-radius:12px;background:#0c0c19;color:white;outline:none;box-shadow:0 0 12px #ff00e51a}.search input:focus{box-shadow:0 0 18px #ff00e555}
 .btn{border:1px solid var(--cyan);background:#0d0d20;color:white;border-radius:10px;padding:10px 15px;transition:.18s}.btn:hover{background:var(--cyan);color:#030307;box-shadow:0 0 18px #00f5ff66}.btn.pink{border-color:var(--pink)}.btn.pink:hover{background:var(--pink)}.btn.primary{background:linear-gradient(90deg,#00d9e6,#7a4dff);border:0}.btn.danger{border-color:var(--danger)}
 .shell{max-width:1400px;margin:auto;padding:24px;display:grid;grid-template-columns:230px minmax(0,1fr) 280px;gap:22px}.side,.right{position:sticky;top:96px;height:max-content}.navbox,.card{background:linear-gradient(145deg,#0b0b1c,#080814);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 0 22px #0008}.navbox{margin-bottom:14px}.navitem{width:100%;display:block;text-align:left;background:transparent;border:0;color:#ddd;padding:11px;border-radius:9px}.navitem:hover,.navitem.active{background:#00f5ff12;color:var(--cyan)}.section-title{font:700 12px Orbitron;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:4px 0 12px}.feedhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.feedhead h1{font:800 22px Orbitron;margin:0}.filters{display:flex;gap:8px}.filters button{padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:#0c0c19;color:#bbb}.filters button.active{border-color:var(--cyan);color:var(--cyan)}
@@ -71,7 +71,7 @@ header{height:72px;position:sticky;top:0;z-index:20;display:flex;align-items:cen
 <script>
 const API = "https://texxer-api.texxer.workers.dev";
 const state = { user:null, posts:[], texes:[], filter:"latest", view:"home", query:"", token:localStorage.getItem("texxer_token") };
-const allowed = /^[a-z0-9_\\-/]+$/;
+const allowed = /^[a-z0-9_\/-]+$/;
 
 async function api(path, options={}) {
   const headers = {"Content-Type":"application/json", ...(options.headers||{})};
